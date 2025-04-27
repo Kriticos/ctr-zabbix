@@ -6,7 +6,7 @@ Este repositório fornece um ambiente Docker Compose para provisionar os contain
 
 - Docker e Docker Compose instalados na máquina.  
 - Rede Docker externa chamada `network-share` já criada:
-- Aontainer MSYQL rodando.
+- Container MSYQL rodando.
 
 ```bash
 # Criar a rede externa se ainda não existir
