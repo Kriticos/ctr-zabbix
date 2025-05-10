@@ -10,7 +10,7 @@ Este repositório fornece um ambiente Docker Compose para provisionar os contain
 
 ```bash
 # Criar a rede externa se ainda não existir
-docker network create --driver bridge network-share --subnet=<SUBNET>
+docker network create --driver bridge --subnet 172.18.0.0/16 network-share
 ```
 
 - Copiar o exemplo de variáveis para um arquivo `.env`:
@@ -25,6 +25,13 @@ cp .env.example .env
 ├── docker-compose.yml    # Definição dos serviços Docker
 ├── .env.example          # Exemplo de variáveis de ambiente
 └── README.md             # Este arquivo de documentação
+```
+
+## Permissões das Pastas
+
+```bash
+chown -R root:root /bskp/zabbix
+chmod -R 750 /bskp/zabbix
 ```
 
 ## Configuração das variáveis de ambiente
