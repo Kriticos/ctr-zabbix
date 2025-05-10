@@ -30,8 +30,8 @@ cp .env.example .env
 ## Permissões das Pastas
 
 ```bash
-chown -R root:root /bskp/zabbix
-chmod -R 750 /bskp/zabbix
+chown -R root:root <caminho_da_pasta_do_zabbix>
+chmod -R 750 <caminho_da_pasta_do_zabbix>
 ```
 
 ## Configuração das variáveis de ambiente
