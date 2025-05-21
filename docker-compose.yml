@@ -43,7 +43,6 @@ services:
     image: zabbix/zabbix-agent2:${RELEASE}
     container_name: ${ZBX_SERVER_AGENT}
     build:
-      context: /sistemas/
       dockerfile: docker/dockerfile.zbx-agent
     environment:
       ZBX_HOSTNAME: ${ZBX_SERVER_HOST}
