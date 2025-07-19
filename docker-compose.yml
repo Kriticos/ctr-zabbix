@@ -9,7 +9,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - ${PORTS_SRV_ZBX}
+      - ${PORTS_CTR_ZBX}
     volumes:
       - ${VOL_LOCALTIME}
       - ${VOL_TZ}
@@ -30,7 +30,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       PHP_TZ: ${PHP_TZ}
     ports:
-      - ${PORTS_SRV_FRONTEND}
+      - ${PORTS_CTR_FRONTEND}
     volumes:
       - ${VOL_LOCALTIME}
       - ${VOL_TZ}
@@ -46,7 +46,7 @@ services:
       ZBX_HOSTNAME: ${ZBX_SERVER_HOST}
       ZBX_SERVER_HOST: ${ZBX_SERVER_HOST}
     ports:
-      - ${PORTS_SRV_AGENT}
+      - ${PORTS_CTR_AGENT}
     volumes:
       - ${VOL_LOCALTIME}
       - ${VOL_TZ}
