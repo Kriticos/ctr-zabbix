@@ -45,8 +45,8 @@ services:
     environment:
       ZBX_HOSTNAME: ${ZBX_SERVER_HOST}
       ZBX_SERVER_HOST: ${ZBX_SERVER_HOST}
-    ports:
-      - ${PORTS_CTR_AGENT}
+    #ports:
+    #  - ${PORTS_CTR_AGENT}
     volumes:
       - ${VOL_LOCALTIME}
       - ${VOL_TZ}
