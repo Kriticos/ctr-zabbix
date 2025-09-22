@@ -10,8 +10,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - ${PORTS_ZBX}
-      - ${PORTS_FRONTEND}
-      - ${PORTS_AGENT}
     volumes:
       - ${VOL_LOCALTIME}
       - ${VOL_TIMEZONE}
@@ -36,7 +34,7 @@ services:
       - ${PORTS_CTR_FRONTEND}
     volumes:
       - ${VOL_LOCALTIME}
-      - ${VOL_TZ}
+      - ${VOL_TIMEZONE}
     networks:
       network-share:
         ipv4_address: ${IPV4_ZBX_FRONTEND}
@@ -52,7 +50,7 @@ services:
     #  - ${PORTS_CTR_AGENT}
     volumes:
       - ${VOL_LOCALTIME}
-      - ${VOL_TZ}
+      - ${VOL_TIMEZONE}
       - ${VOL_SCRIPTS_PATH}
     networks:
       network-share:
