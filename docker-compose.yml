@@ -13,6 +13,7 @@ services:
     volumes:
       - ${VOL_LOCALTIME}
       - ${VOL_TZ}
+      - ${VOL_SCRIPTS_PATH}
     networks:
       network-share:
         ipv4_address: ${IPV4_ZBX_SERVER_HOST}
