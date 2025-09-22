@@ -9,7 +9,9 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - ${PORTS_CTR_ZBX}
+      - ${PORTS_ZBX}
+      - ${PORTS_FRONTEND}
+      - ${PORTS_AGENT}
     volumes:
       - ${VOL_LOCALTIME}
       - ${VOL_TIMEZONE}
