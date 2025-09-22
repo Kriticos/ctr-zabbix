@@ -12,7 +12,7 @@ services:
       - ${PORTS_CTR_ZBX}
     volumes:
       - ${VOL_LOCALTIME}
-      - ${VOL_TZ}
+      - ${VOL_TIMEZONE}
       - ${VOL_SCRIPTS_PATH}
     networks:
       network-share:
