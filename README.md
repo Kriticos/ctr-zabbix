@@ -21,54 +21,30 @@ docker network create --driver bridge network-share --subnet=172.18.0.0/16
 ## Estrutura de arquivos
 
 ```plaintext
-├── docker-compose.yml    # Definição dos serviços Docker
-├── .env.example          # Exemplo de variáveis de ambiente
-└── README.md             # Este arquivo de documentação
+bskp/
+├── scripts/                 # Scripts personalizados (se necessário)
+└── ctr-zbx/                 # Projeto Zabbix
+     ├── docker-compose.yml  # Definição dos serviços Docker
+     ├── .env.example        # Exemplo de variáveis de ambiente
+     └── README.md           # Documentação do serviço
 ```
 
 ## Permissões das Pastas
 
 ```bash
-chown -R root:root <caminho_da_pasta_do_zabbix>
-chmod -R 750 <caminho_da_pasta_do_zabbix>
+chown -R root:root /bskp/ctr-zbx
+chmod -R 750 /bskp/ctr-zbx
 ```
 
 ## Configuração das variáveis de ambiente
 
-No arquivo `.env`, defina:
+Copie o template e preencha os valores:
 
 ```bash
-# Nomes dos containers
-ZBX_SERVER_HOST=<NOME_CONTAINER_SERVER>
-ZBX_SERVER_FRONTEND=<NOME_CONTAINER_FRONTEND>
-ZBX_SERVER_AGENT=<NOME_CONTAINER_AGENT>
-
-# Versão das imagens Zabbix
-RELEASE=ubuntu-7.2-latest
-
-# Banco de dados MySQL
-DB_SERVER_HOST=<NOME_CONTAINER_MYSQL>
-MYSQL_DATABASE=zabbix
-MYSQL_USER=zabbix
-MYSQL_PASSWORD=<SENHA_ZABBIX>
-MYSQL_ROOT_PASSWORD=<SENHA_ROOT_MYSQL>
-
-# Time e timezone
-VOL_LOCALTIME=/etc/localtime:/etc/localtime:ro
-VOL_TZ=/etc/timezone:/etc/timezone:ro
-PHP_TZ=America/Sao_Paulo
-
-# Portas (host:container)
-PORTS_SRV_ZBX=10051:10051
-PORTS_SRV_FRONTEND=<PORTA_HOST>:8080
-PORTS_SRV_AGENT=10050:10050
-
-# Rede estática
-IPV4_ZBX_SERVER_HOST=<IP_SERVER>
-IPV4_ZBX_FRONTEND=<IP_FRONTEND>
-IPV4_ZBX_AGENT=<IP_AGENT>
-SUBNET=<SUBNET>
+cp /bskp/ctr-zbx/.env.example /bskp/ctr-zbx/.env
 ```
+
+Ajuste as variáveis no arquivo `.env`.
 
 ## Subindo o serviço
 
