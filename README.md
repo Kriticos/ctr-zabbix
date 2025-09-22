@@ -46,6 +46,22 @@ cp /bskp/ctr-zbx/.env.example /bskp/ctr-zbx/.env
 
 Ajuste as variáveis no arquivo `.env`.
 
+## Criando a base de dados
+
+Acesse o container do ctr-mysql e crie a base de dados para o Zabbix:
+
+```bash
+docker exec -it ctr-mysql mysql -u root -p
+```
+
+```sql
+CREATE DATABASE IF NOT EXISTS zabbix CHARACTER SET utf8 COLLATE utf8_bin;
+CREATE USER 'zabbix'@'localhost' IDENTIFIED BY '&kW97YDmywJ&13';
+GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
+FLUSH PRIVILEGES;
+exit
+```
+
 ## Subindo o serviço
 
 Para iniciar todos os containers em segundo plano:
