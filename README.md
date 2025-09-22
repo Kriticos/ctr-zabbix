@@ -4,20 +4,19 @@ Este repositório fornece um ambiente Docker Compose para provisionar os contain
 
 ## Pré-requisitos
 
-- Docker e Docker Compose instalados na máquina.  
-- Rede Docker externa chamada `network-share` já criada:
-- Container MSYQL rodando.
+- Docker e Docker Compose.
+- Rede Docker `network-share` já criada:
+- Container ctr-mysql rodando.
+
+## Criar a rede externa se ainda não existir
 
 ```bash
-# Criar a rede externa se ainda não existir
-docker network create --driver bridge --subnet 172.18.0.0/16 network-share
+docker network create --driver bridge network-share --subnet=172.18.0.0/16
 ```
 
-- Copiar o exemplo de variáveis para um arquivo `.env`:
+### OBSERVAÇÃO
 
-```bash
-cp .env.example .env
-```
+**Ajuste a subnet conforme necessário.**
 
 ## Estrutura de arquivos
 
