@@ -56,7 +56,7 @@ docker exec -it ctr-mysql mysql -u root -p
 
 ```sql
 CREATE DATABASE IF NOT EXISTS zabbix CHARACTER SET utf8 COLLATE utf8_bin;
-CREATE USER 'zabbix'@'localhost' IDENTIFIED BY '&kW97YDmywJ&13';
+CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'PASSWORD';
 GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
 FLUSH PRIVILEGES;
 exit
