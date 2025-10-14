@@ -99,4 +99,11 @@ Acompanhe os logs do Server:
 docker logs -f ctr-zbx
 ```
 
-Qualquer dúvida ou sugestão, abra uma issue ou envie uma contribuição!
+
+## 5. Acessando o Zabbix WEB
+
+> **OBS:** Substitua `<IP_SERVIDOR>` pelo IP do servidor onde o container está rodando e troque a porta caso tenha alterado no `.env`
+
+```html
+http://IP_SERVIDOR:4080 
+```
