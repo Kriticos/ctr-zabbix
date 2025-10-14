@@ -4,9 +4,13 @@ Este repositório fornece um ambiente Docker Compose para provisionar os contain
 
 ## Pré-requisitos
 
-- Docker e Docker Compose.
+Antes de começar, verifique se você tem os seguintes itens instalados:
+
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Git](https://git-scm.com/)
 - Rede Docker `network-share` já criada:
-- Container ctr-mysql rodando.
+- Container [ctr-mysql](https://github.com/Kriticos/ctr-mysql) rodando
 
 ## Criar a rede externa se ainda não existir
 
@@ -14,9 +18,7 @@ Este repositório fornece um ambiente Docker Compose para provisionar os contain
 docker network create --driver bridge network-share --subnet=172.18.0.0/16
 ```
 
-### OBSERVAÇÃO
-
-**Ajuste a subnet conforme necessário.**
+> **OBS:**  Ajuste a subnet conforme a necessidade do seu cenário.
 
 ## Estrutura de arquivos
 
@@ -36,29 +38,44 @@ chown -R root:root /bskp/ctr-zbx
 chmod -R 750 /bskp/ctr-zbx
 ```
 
-## Configuração das variáveis de ambiente
+## Arquivo **.env**
 
-Copie o template e preencha os valores:
+Na pasta /bskp/ctr-zbx, crie uma cópia do arquivo `.env.example` e renomeie-a para `.env`:
 
 ```bash
-cp /bskp/ctr-zbx/.env.example /bskp/ctr-zbx/.env
+cp .env.example .env
 ```
 
-Ajuste as variáveis no arquivo `.env`.
+>**OBS:** Edite o arquivo `.env` para configurar as variáveis de ambiente conforme necessário.**
 
-## Criando a base de dados
+## Criando a base de dados para o zabbix
 
-Acesse o container do ctr-mysql e crie a base de dados para o Zabbix:
+Acesse o container do ctr-mysql e crie a base de dados para o zabbix:
 
 ```bash
 docker exec -it ctr-mysql mysql -u root -p
 ```
 
 ```sql
-CREATE DATABASE IF NOT EXISTS zabbix CHARACTER SET utf8 COLLATE utf8_bin;
-CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'PASSWORD';
-GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
+-- 1) Banco com charset/collation modernos
+CREATE DATABASE IF NOT EXISTS zabbix
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+-- 2) Usuário (opção A: acessa de qualquer host)
+CREATE USER IF NOT EXISTS 'zabbix'@'%' IDENTIFIED BY 'PASSWORD';
+
+--   (opção B: se o zabbix estiver no MESMO host do MySQL)
+-- CREATE USER IF NOT EXISTS 'zabbix'@'localhost' IDENTIFIED BY 'PASSWORD';
+
+-- 3) Permissões mínimas necessárias no banco zabbix
+GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'%';
+-- GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
+
+-- 4) Em MySQL/MariaDB atuais, FLUSH PRIVILEGES é opcional (o GRANT já recarrega)
 FLUSH PRIVILEGES;
+
+-- 5) (Comando do cliente, não é SQL do servidor)
 exit
 ```
 
