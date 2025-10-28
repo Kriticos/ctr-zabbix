@@ -1,6 +1,9 @@
 services:
   zbx-server:
-    image: zabbix/zabbix-server-mysql:${RELEASE}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zabbix-server-odbc:latest
     container_name: ${ZBX_SERVER_HOST}
     environment:
       DB_SERVER_HOST: ${DB_SERVER_HOST}
