@@ -55,6 +55,7 @@ services:
       - ${VOL_LOCALTIME}
       - ${VOL_TIMEZONE}
       - ${VOL_SCRIPTS_PATH}
+      - ${VOL_ODBCINI_PATH}
     networks:
       network-share:
         ipv4_address: ${IPV4_ZBX_AGENT}
